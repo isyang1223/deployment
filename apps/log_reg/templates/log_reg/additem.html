@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Success!!!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <a href="/log_reg/success">Home</a>
+    <a href="/log_reg/logout">Logout</a>
+    <div class=“container”>
+    <h1>Create a New Wish List Item</h1>
+
+    <form action='/log_reg/create' method='post'>
+        {% csrf_token %}
+        <h4>Item/Product:
+            <input type='text' name='itemname'>
+        </h4>
+         {% if messages %} {% for x in messages %}
+        
+        <h1>{{x}}</h1>
+        {% endfor %} {% endif %}
+        <input type="hidden" name="addby_id" value="{{request.session.logged_id}}">
+        <input type='submit' value='Add'>
+    </form>
+</body>
+
+</html>

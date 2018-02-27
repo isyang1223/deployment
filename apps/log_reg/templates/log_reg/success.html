@@ -15,13 +15,62 @@
 </head>
 
 <body>
-    <div class=“container”>
-     <h1>Success! Welcome, {{loggeduser.fname}}!</h1>
-     <h3>Successfully {{request.session.idk}}!</h3>
-     </h1>
-
     <a href="/log_reg/logout">Logout</a>
-    </div>
+    <div class=“container”>
+     <h1>Hello, {{loggeduser.username}}!</h1>
+     <h3>Your Wish List:</h3>
+        <table class="table">
+            <tr>
+                <th>Item</th>
+                <th>Added by</th>
+                <th>Date Added</th>
+                <th>Actions</th>
+            </tr>
+            
+            <tr>{% for i in myitems %}
+                <td>
+                   <a href="/log_reg/{{i.id}}">{{i.itemname}}</a>
+                </td>
+                <td>{{i.added_by.username}}</td>
+                <td>{{i.created_at}}</td>
+                <td><a href="/log_reg/remove/{{i.id}}">Remove from my Wishlist</a></td>
+            </tr>{% endfor %}
+            <tr>{% for i in myallitem %}
+                <td>
+                    <a href="/log_reg/{{i.id}}">{{i.itemname}}</a>
+                </td>
+                <td>{{i.added_by.username}}</td>
+                <td>{{i.created_at}}</td>
+                <td>
+                    <a href="/log_reg/delete/{{i.id}}">Delete</a>
+                </td>
+            </tr>{% endfor %}
+        </table> 
+
+
+
+
+        <h3>Other Users' Wish List:</h3>
+        <table class="table">
+            <tr>
+                <th>Item</th>
+                <th>Added by</th>
+                <th>Date Added</th>
+                <th>Actions</th>
+            </tr>
+        
+            <tr>{% for i in notmyitem %}
+                <td>
+                    <a href="/log_reg/{{i.id}}">{{i.itemname}}</a>
+                </td>
+                <td>{{i.added_by.username}}</td>
+                <td>{{i.created_at}}</td>
+                <td><a href="/log_reg/add/{{i.id}}">Add to my Wishlist</a></td>
+            </tr>{% endfor %}
+        </table>
+       
+    
+    </div><a href="/log_reg/additem">Add Item</a>
 </body>
 
 </html>

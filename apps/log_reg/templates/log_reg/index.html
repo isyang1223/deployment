@@ -18,12 +18,12 @@
             <h1>Login</h1>
             <form action='/log_reg/login' method='post'>
                  {% csrf_token %}
-                <h4>Email:
-                <input type='email' name='logemail'></h4>
+                <h4>Username:
+                <input type='text' name='username'></h4>
                 <h4>Password:
                 <input type="password" name="password"></h4>
             
-                <input type='submit' value='Submit' >
+                <input type='submit' value='Login' >
             </form>
             
             {% if messages %}
@@ -37,20 +37,22 @@
             <form action='/log_reg/registration' method='post' >
                  {% csrf_token %}
                 
-                <p></p>
-                <h4>Email:
-                <input type='email' name='email' ></h4> 
-                <h4>First name:
-                <input type='text' name='first_name' ></h4> 
-                <h4>Last name:
-                <input type='text' name='last_name'></h4> 
+            
+                <h4>Name:
+                <input type='text' name='name' ></h4> 
+                <h4>Username:
+                <input type='text' name='username'></h4> 
                 <h4>Password:
                 <input type="password" name="password" ></h4> 
+                <h5>*Password should be at least 8 characters</h5>
                 <h4>Confirm Password:
                 <input type="password" name="password2" ></h4>
+                <h4>Date Hired
+                <input type="date" name="datehired">
+                </h4>
                 
             
-                <input type='submit' value='Submit' >
+                <input type='submit' value='Register' >
             </form>
 
 

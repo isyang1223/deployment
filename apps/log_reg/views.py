@@ -8,6 +8,8 @@ def index(request):
     return render(request,'log_reg/index.html')
 
 def success(request):
+    if not "logged_id" in request.session:
+        return redirect("/log_reg")
     data = {
         "loggeduser": User.objects.get(id=request.session["logged_id"])
     }
@@ -45,6 +47,9 @@ def registration(request):
     else:
         return redirect("/log_reg")
 
+def logout(request):
+    request.session.clear()
+    return redirect("/log_reg")
     
 
             

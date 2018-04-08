@@ -17,6 +17,9 @@ class UserManager(models.Manager):
             errors["name"] = "User's name cannot contain any numbers or special characters!"
         if len(postData['datehired']) == 0:
             errors['datehired'] = "Date hired may not be blank!"
+        else:
+            if datetime.strptime(postData["datehired"], '%Y-%m-%d') > datetime.now():
+                errors['datehired'] = "Can't be feature date!"
         if len(postData['password']) < 8:
             errors["password"] = "Invalid Username/Password!"
         

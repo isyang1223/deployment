@@ -12,15 +12,13 @@ def success(request):
         return redirect("/log_reg")
     loginuser = User.objects.get(id= request.session['logged_id'])
     key= Wishlist.objects.filter(added_by=request.session["logged_id"])
-    key2= Wishlist.objects.all().exclude(added_by=loginuser)
-    key3=Wishlist.objects.all().exclude(repeated_by=loginuser)
+    key2= Wishlist.objects.all().exclude(added_by=loginuser).exclude(repeated_by=loginuser)
     key4=Wishlist.objects.all().filter(repeated_by=loginuser)
     data = {
         "loggeduser": loginuser,
         "myallitem":key,
         "notmyitem":key2,
         "myitems":key4,
-        "allitemexceptmine":key3,
         
     }
     
@@ -84,9 +82,11 @@ def createitem(request):
 def showitem(request,id):
     if not "logged_id" in request.session:
         return redirect("/")
-    key= Wishlist.objects.filter(id=id)
+    key= Wishlist.objects.get(id=id)
+    key1=key.repeated_by.all()
     data={
-        "item":key
+        "item": key,
+        "usersitem": key1
     }
     
     return render(request,'log_reg/item.html', data)

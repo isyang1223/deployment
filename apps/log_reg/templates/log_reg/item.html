@@ -18,13 +18,16 @@
     <a href="/log_reg/success">Home</a>
     <a href="/log_reg/logout">Logout</a>
     <div class=“container”>
-         {% for i in item %}
-        <h1>{{i.itemname}}</h1>
+        <h1>{{item.itemname}}</h1>
+         <h3>Users who added this product/item under their wish list: </h3>
+         <p>{{item.added_by.username}}</p>
+        {% for i in usersitem %}
            
-        <h3>Users who added this product/item under their wish list: </h3>
-        <p>{{i.added_by.username}}</p>
+        
+    <p>{{i.username}}</p>
 
         {% endfor %}
+
 </body>
 
 </html>
